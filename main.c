@@ -8,6 +8,6 @@
  */
 int main(void)
 {
-
+	_printf("I am using %%c and %%s to print the following:\n%c %s\n", 'a', "tiny little man");
 	return (0);
 }
