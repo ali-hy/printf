@@ -93,7 +93,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['d'] = convert_dec;
 	convertor_funcs['i'] = convert_dec;
 	convertor_funcs['b'] = convert_bin;
-	convertor_funcs['u'] = convert_unsigned;
+	convertor_funcs['u'] = convert_uns;
 	convertor_funcs['o'] = convert_oct;
 	convertor_funcs['x'] = convert_hex;
 	convertor_funcs['X'] = convert_HEX;

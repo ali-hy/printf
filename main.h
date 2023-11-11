@@ -75,7 +75,7 @@ char *percentage();
 
 char *convert_bin(conversion_data *c_data, va_list l);
 char *convert_dec(conversion_data *c_data, va_list l);
-char *convert_unsigned(conversion_data *c_data, va_list l);
+char *convert_uns(conversion_data *c_data, va_list l);
 char *convert_oct(conversion_data *c_data, va_list l);
 char *convert_hex(conversion_data *c_data, va_list l);
 char *convert_HEX(conversion_data *c_data, va_list l);
@@ -89,9 +89,11 @@ int _putstr(const char *s);
 char *translate_conversion(conversion_data *c_data, va_list l);
 int print_conversion(conversion_data *c_data, va_list l);
 
-int buffer_push(const char *buffer, int c);
-int flush_buffer(const char *buffer);
-
+int buffer_push(char *buffer, int *i, const char *s);
+int buffer_push_char(char *buffer, int *i, char s);
+int buffer_push_conversion(char *buffer, int *i, conversion_data *c_data,
+		va_list l);
+int flush_buffer(const char *buffer, int *i);
 int _printf(const char *format, ...);
 
 #endif /* MAIN_H */
