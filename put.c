@@ -15,7 +15,7 @@ int _putchar(unsigned char c)
  * @s: string to print
  * Return: len of printed string, -1 on error
  */
-int _putstr(char *s)
+int _putstr(const char *s)
 {
 	return (write(1, s, len(s)));
 }

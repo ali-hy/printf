@@ -50,10 +50,10 @@ char *convert_char(conversion_data *c_data, va_list l)
  */
 char *convert_str(conversion_data *c_data, va_list l)
 {
-	char *s = va_arg(l, char *);
+	const char *s = va_arg(l, const char *);
 	char *res = copy(s);
 
-	if (!c_data)
+	if (res == NULL || s == NULL || c_data == NULL)
 		return (NULL);
 
 	return (res);
@@ -81,7 +81,6 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	char *(*convertor_funcs[256])(conversion_data *, va_list);
 
 	int i = 0;
-	char *res;
 
 	while (i < 256)
 	{
@@ -98,14 +97,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
 	{
-		res = malloc(2);
-		if (res == NULL)
-		{
-			return (NULL);
-		}
-		res[0] = c_data->conversion_code;
-		res[1] = '\0';
-		return (res);
+		exit(1);
 	}
 
 	return (convertor_func(c_data, l));

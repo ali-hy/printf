@@ -5,7 +5,7 @@
  * @s: string
  * Return: length of s
  */
-int len(char *s)
+int len(const char *s)
 {
 	int i = 0;
 
@@ -23,7 +23,7 @@ int len(char *s)
  * @s: string to copy
  * Return: new string
  */
-char *copy(char *s)
+char *copy(const char *s)
 {
 	int i, length = len(s);
 	char *res = malloc(length);
@@ -45,17 +45,17 @@ char *copy(char *s)
  * @s2: second string
  * Return: pointer to concatinated string
  */
-char *concat(char *s1, char *s2)
+char *concat(const char *s1, const char *s2)
 {
 	int i, l1 = len(s1), l2 = len(s2);
 	int l_res = l1 + l2;
 	char *res;
 
 	if (s1 == NULL)
-		return (s2);
+		return (copy(s2));
 
 	if (s2 == NULL)
-		return (s1);
+		return (copy(s1));
 
 	res = malloc(l_res + 1);
 	if (res == NULL)
