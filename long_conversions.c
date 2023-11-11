@@ -26,7 +26,7 @@ char *ltos(long l, int base, int precision)
  */
 char *ultos(unsigned long ul, int base, int precision)
 {
-	long curr = ul;
+	unsigned long curr = ul;
 	int i,  length = 0;
 	char *map = "0123456789abcdef";
 	char *res;
@@ -77,6 +77,30 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
 
 	res = concat(sign, converted_num);
 	free(converted_num);
+	return (res);
+}
+
+/**
+ * convert_bin - convert short/int/long to binary string
+ * @c_data: pointer to conversion_data
+ * @l: argument list
+ * Return: string representing argument in binary number system
+ */
+char *convert_bin(conversion_data *c_data, va_list l)
+{
+	unsigned int num = va_arg(l, unsigned int);
+	char *res;
+
+	if (c_data == NULL)
+	{
+		res = malloc(1);
+		res[0] = '\0';
+	}
+	else
+	{
+		res = ultos(num, 2, 0);
+	}
+
 	return (res);
 }
 

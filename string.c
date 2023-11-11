@@ -19,6 +19,27 @@ int len(char *s)
 }
 
 /**
+ * copy - copy a string
+ * @s: string to copy
+ * Return: new string
+ */
+char *copy(char *s)
+{
+	int i, length = len(s);
+	char *res = malloc(length);
+
+	if (res == NULL || s == NULL)
+		return (NULL);
+
+	for (i = 0; i < length; i++)
+	{
+		res[i] = s[i];
+	}
+
+	return (res);
+}
+
+/**
  * concat - concatinate two stings
  * @s1: first string
  * @s2: second string

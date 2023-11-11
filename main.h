@@ -29,8 +29,9 @@ typedef struct conversion_data conversion_data;
 
 conversion_data *get_conversion_data(char *c);
 
-/* UTILS */
+/* STRING UTILS */
 int len(char *s);
+char *copy(char *s);
 char *concat(char *s1, char *s2);
 
 char *ltos(long l, int base, int precision);
@@ -71,6 +72,7 @@ char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
 char *percentage();
 
+char *convert_bin(conversion_data *c_data, va_list l);
 char *convert_dec(conversion_data *c_data, va_list l);
 char *convert_usigned(conversion_data *c_data, va_list l);
 char *convert_oct(conversion_data *c_data, va_list l);

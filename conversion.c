@@ -10,8 +10,7 @@ conversion_data *new_conversion()
 
 	if (conv == NULL)
 	{
-		_putstr("MALLOC FAILED\n");
-		exit(1);
+		return (NULL);
 	}
 
 	conv->flag_comb = 0;
@@ -32,7 +31,7 @@ conversion_data *new_conversion()
 char *convert_char(conversion_data *c_data, va_list l)
 {
 	char c = va_arg(l, int);
-	char *res = malloc(2);
+	char *res = malloc(2 * sizeof(char));
 
 	if (res == NULL || c_data == NULL)
 		return (NULL);
@@ -52,13 +51,12 @@ char *convert_char(conversion_data *c_data, va_list l)
 char *convert_str(conversion_data *c_data, va_list l)
 {
 	char *s = va_arg(l, char *);
+	char *res = copy(s);
 
 	if (!c_data)
 		return (NULL);
-	if (s == NULL)
-		return ("(nil)");
 
-	return (s);
+	return (res);
 }
 
 /**
@@ -95,6 +93,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['%'] = percentage;
 	convertor_funcs['d'] = convert_dec;
 	convertor_funcs['i'] = convert_dec;
+	convertor_funcs['b'] = convert_bin;
 
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
@@ -102,8 +101,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 		res = malloc(2);
 		if (res == NULL)
 		{
-			_putstr("MALLOC FAILED\n");
-			exit(1);
+			return (NULL);
 		}
 		res[0] = c_data->conversion_code;
 		res[1] = '\0';

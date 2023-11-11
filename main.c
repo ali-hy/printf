@@ -8,7 +8,7 @@
  */
 int main(void)
 {
-	/*printf("Expected:\nNULL: %s\n", NULL);*/
-	_printf("My code:\nNULL: %s\npositive: %d\nnegative: %d\nzero: %d\n", NULL, 200053, -80085, 0);
+	_printf("what the frick brooo %% %c %s\nThis is a binary number: %b\n", 'x', "is the best variable ever", -200);
+
 	return (0);
 }

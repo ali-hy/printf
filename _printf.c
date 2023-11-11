@@ -10,9 +10,8 @@ int print_conversion(conversion_data *c_data, va_list l)
 {
 	char *s = translate_conversion(c_data, l);
 	int res = _putstr(s);
-	
-	if (c_data->conversion_code != 's' &&
-			c_data->conversion_code != '%')
+
+	if (c_data->conversion_code != '%')
 		free(s);
 
 	return (res);
@@ -26,9 +25,8 @@ int print_conversion(conversion_data *c_data, va_list l)
  */
 int _printf(const char *format, ...)
 {
-	int i, convert = 0;
+	int i, convert = 0, res = 0;
 	conversion_data *c_data = new_conversion();
-	int res = 0;
 	va_list l;
 
 	va_start(l, format);
