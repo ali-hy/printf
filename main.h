@@ -81,7 +81,7 @@ char *apply_sign(conversion_data *c_data, char *converted_num,
 		int is_negative);
 
 /* PRINT */
-int _putchar(char c);
+int _putchar(unsigned char c);
 int _putstr(char *s);
 
 char *translate_conversion(conversion_data *c_data, va_list l);

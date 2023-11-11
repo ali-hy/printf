@@ -30,7 +30,7 @@ conversion_data *new_conversion()
  */
 char *convert_char(conversion_data *c_data, va_list l)
 {
-	char c = va_arg(l, int);
+	unsigned char c = va_arg(l, int);
 	char *res = malloc(2 * sizeof(char));
 
 	if (res == NULL || c_data == NULL)
