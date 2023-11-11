@@ -8,6 +8,7 @@
  */
 int main(void)
 {
-	_printf("I am using %%c and %%s to print the following:\n%c %s\n", 'a', "tiny little man");
+	/*printf("Expected:\nNULL: %s\n", NULL);*/
+	_printf("My code:\nNULL: %s\npositive: %d\nnegative: %d\nzero: %d\n", NULL, 200053, -80085, 0);
 	return (0);
 }

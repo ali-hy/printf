@@ -17,12 +17,5 @@ int _putchar(char c)
  */
 int _putstr(char *s)
 {
-	int length = 0;
-
-	while (c[length] != '\0')
-	{
-		length += _putchar(c[length]);
-	}
-
-	return (length);
+	return (write(1, s, len(s)));
 }

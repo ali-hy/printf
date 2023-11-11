@@ -55,6 +55,8 @@ char *convert_str(conversion_data *c_data, va_list l)
 
 	if (!c_data)
 		return (NULL);
+	if (s == NULL)
+		return ("(nil)");
 
 	return (s);
 }
@@ -91,6 +93,8 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['c'] = convert_char;
 	convertor_funcs['s'] = convert_str;
 	convertor_funcs['%'] = percentage;
+	convertor_funcs['d'] = convert_dec;
+	convertor_funcs['i'] = convert_dec;
 
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)

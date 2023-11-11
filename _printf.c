@@ -9,8 +9,13 @@
 int print_conversion(conversion_data *c_data, va_list l)
 {
 	char *s = translate_conversion(c_data, l);
+	int res = _putstr(s);
+	
+	if (c_data->conversion_code != 's' &&
+			c_data->conversion_code != '%')
+		free(s);
 
-	return (_putstr(s));
+	return (res);
 }
 
 /**
@@ -47,6 +52,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(l);
+	free(c_data);
 
 	return (res);
 }

@@ -27,25 +27,27 @@ struct conversion_data
 
 typedef struct conversion_data conversion_data;
 
+conversion_data *get_conversion_data(char *c);
+
 /* UTILS */
 int len(char *s);
 char *concat(char *s1, char *s2);
 
-char *shtos(int sh, int base, int precision);
-char *itos(int i, int base, int precision);
 char *ltos(long l, int base, int precision);
+char *ultos(unsigned long l, int base, int precision);
 char *dtos(double f, int precision);
 
+int is_digit(char c);
 int stoi(char *s);
 
 /* FLAGS */
 enum flags
 {
-	alt = 1,
-	zero = 2,
-	left = 4,
-	pos_padding = 8,
-	sign = 16
+	F_ALT = 1,
+	F_ZERO = 2,
+	F_LEFT = 4,
+	F_POS_PADDING = 8,
+	F_SIGN = 16
 };
 
 /**
@@ -53,8 +55,9 @@ enum flags
  */
 typedef enum flags flag_t;
 
-int has_flag (int flag_comb, flag_t flag);
-void apply_prefix_flags (int flag_comb, char conversion_code, char *current);
+int is_flag_active(conversion_data *c_data, flag_t flag);
+void activate_flag(conversion_data *c_data, flag_t flag);
+void apply_concat_flags(conversion_data *c_data, char *current);
 
 /* FIELD WIDTH */
 char *apply_width(conversion_data *c_data, char *s);
@@ -67,6 +70,13 @@ conversion_data *new_conversion();
 char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
 char *percentage();
+
+char *convert_dec(conversion_data *c_data, va_list l);
+char *convert_usigned(conversion_data *c_data, va_list l);
+char *convert_oct(conversion_data *c_data, va_list l);
+char *convert_hex(conversion_data *c_data, va_list l);
+char *apply_sign(conversion_data *c_data, char *converted_num,
+		int is_negative);
 
 /* PRINT */
 int _putchar(char c);
