@@ -32,7 +32,6 @@ int _printf(const char *format, ...)
 	va_start(l, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		/* printf("\ni = %d\n", i); */
 		if (convert)
 		{
 			c_data->conversion_code = format[i];

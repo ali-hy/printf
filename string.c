@@ -74,3 +74,24 @@ char *concat(const char *s1, const char *s2)
 	res[i] = '\0';
 	return (res);
 }
+
+/**
+ * to_upper - make all letters in a string uppercase
+ * @s: string
+ * Return: pointer to s
+ */
+char *to_upper(char *s)
+{
+	int i;
+	const int diff = 'A' - 'a';
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] >= 'a' && s[i] <= 'z')
+		{
+			s[i] += diff;
+		}
+	}
+
+	return (s);
+}

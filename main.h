@@ -33,6 +33,7 @@ conversion_data *get_conversion_data(const char *c);
 int len(const char *s);
 char *copy(const char *s);
 char *concat(const char *s1, const char *s2);
+char *to_upper(char *s1);
 
 char *ltos(long l, int base, int precision);
 char *ultos(unsigned long l, int base, int precision);
@@ -74,9 +75,10 @@ char *percentage();
 
 char *convert_bin(conversion_data *c_data, va_list l);
 char *convert_dec(conversion_data *c_data, va_list l);
-char *convert_usigned(conversion_data *c_data, va_list l);
+char *convert_unsigned(conversion_data *c_data, va_list l);
 char *convert_oct(conversion_data *c_data, va_list l);
 char *convert_hex(conversion_data *c_data, va_list l);
+char *convert_HEX(conversion_data *c_data, va_list l);
 char *apply_sign(conversion_data *c_data, char *converted_num,
 		int is_negative);
 
