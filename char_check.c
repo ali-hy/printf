@@ -15,14 +15,14 @@ int is_digit(char c)
 
 
 /**
- * is_printable - check if char is printable for S specifier
+ * is_nonprintable - check if char is printable for S specifier
  * @c: char
- * Return: 1 if printable, 0 if not
+ * Return: 1 if nonprintable, 0 if not
  */
-int is_printable(char c)
+int is_nonprintable(char c)
 {
 	if (c < 32 || c >= 127)
-		return (0);
+		return (1);
 
-	return (1);
+	return (0);
 }

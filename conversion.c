@@ -53,8 +53,10 @@ char *convert_str(conversion_data *c_data, va_list l)
 	const char *s = va_arg(l, const char *);
 	char *res = copy(s);
 
-	if (res == NULL || s == NULL || c_data == NULL)
-		return (NULL);
+	UNUSED(c_data);
+
+	if (res == NULL)
+		return (copy("(null)"));
 
 	return (res);
 }
@@ -98,6 +100,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['o'] = convert_oct;
 	convertor_funcs['x'] = convert_hex;
 	convertor_funcs['X'] = convert_HEX;
+	convertor_funcs['S'] = convert_printable;
 
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)

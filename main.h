@@ -7,9 +7,10 @@
 #include <stdio.h>
 
 #define BUFFER_SIZE 1024
+#define UNUSED(x) ((void) (x))
 
 /**
- * conversion_data - data necessary to make a conversion
+ * struct conversion_data - data necessary to make a conversion
  * @flag_comb: number that indicates used flags
  * @min_width: minimum length of result string
  * @precision: precision of integer result
@@ -40,7 +41,7 @@ char *ultos(unsigned long l, int base, int precision);
 char *dtos(double f, int precision);
 
 int is_digit(char c);
-int is_printable(char c);
+int is_nonprintable(char c);
 int stoi(const char *s);
 
 /* FLAGS */
@@ -72,6 +73,7 @@ int get_conversion_base(char *len_mod);
 conversion_data *new_conversion();
 char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
+char *convert_printable(conversion_data *data, va_list l);
 char *percentage();
 
 char *convert_bin(conversion_data *c_data, va_list l);
