@@ -23,54 +23,6 @@ conversion_data *new_conversion()
 }
 
 /**
- * convert_char - makes conversion data and char into string
- * @c_data: conversion data
- * @l: args list
- * Return: resulting string
- */
-char *convert_char(conversion_data *c_data, va_list l)
-{
-	unsigned char c = va_arg(l, int);
-	char *res = malloc(2 * sizeof(char));
-
-	if (res == NULL || c_data == NULL)
-		return (NULL);
-
-	res[0] = c;
-	res[1] = '\0';
-
-	return (res);
-}
-
-/**
- * convert_str - modify string with conversion data and return string
- * @c_data: conversion data
- * @l: args list
- * Return: modified string
- */
-char *convert_str(conversion_data *c_data, va_list l)
-{
-	const char *s = va_arg(l, const char *);
-	char *res = copy(s);
-
-	UNUSED(c_data);
-
-	if (res == NULL)
-		return (copy("(null)"));
-
-	return (res);
-}
-
-/**
- * percentage - return "%"
- * Return: "%"
- */
-char *percentage()
-{
-	return ("%");
-}
-
-/**
  * translate_conversion - turns conversion into string
  * @c_data: conversion data
  * @l: args list
@@ -86,13 +38,11 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	int i = 0;
 
 	while (i < 256)
-	{
 		convertor_funcs[i++] = NULL;
-	}
 
-	convertor_funcs['c'] = convert_char;
+	convertor_funcs['c'] = convert_char; 
 	convertor_funcs['s'] = convert_str;
-	convertor_funcs['%'] = percentage;
+	convertor_funcs['%'] = percentage; 
 	convertor_funcs['d'] = convert_dec;
 	convertor_funcs['i'] = convert_dec;
 	convertor_funcs['b'] = convert_bin;
@@ -101,7 +51,9 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['x'] = convert_hex;
 	convertor_funcs['X'] = convert_HEX;
 	convertor_funcs['S'] = convert_printable;
+	convertor_funcs['p'] = convert_address;
 
+	
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
 	{

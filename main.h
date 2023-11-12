@@ -71,6 +71,7 @@ int get_conversion_base(char *len_mod);
 
 /* CONVERT */
 conversion_data *new_conversion();
+void reset_conversion(conversion_data *c_data);
 char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
 char *convert_printable(conversion_data *data, va_list l);
@@ -82,6 +83,7 @@ char *convert_uns(conversion_data *c_data, va_list l);
 char *convert_oct(conversion_data *c_data, va_list l);
 char *convert_hex(conversion_data *c_data, va_list l);
 char *convert_HEX(conversion_data *c_data, va_list l);
+char *convert_address(conversion_data *c_data, va_list l);
 char *apply_sign(conversion_data *c_data, char *converted_num,
 		int is_negative);
 
