@@ -9,10 +9,10 @@
  */
 int main(void)
 {
-	int i = 0;
+	char buffer[BUFFER_SIZE];
+	int *buffer_i = malloc(sizeof(int));
 
-	i = _printf("12%c3", '\0');
-	_printf("\nTHAT WAS %d CHARS LONG", i);
-
+	buffer_push(buffer, buffer_i, "I DON'T UNDERSTAND WHY YOU'RE NOT WORKING.\n", 0);
+	flush_buffer(buffer, buffer_i);
 	return (0);
 }

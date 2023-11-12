@@ -79,6 +79,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	char *(*convertor_func)(conversion_data *, va_list);
 
 	char *(*convertor_funcs[256])(conversion_data *, va_list);
+	char *res;
 
 	int i = 0;
 
@@ -101,7 +102,15 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
 	{
-		exit(1);
+		res = malloc(2);
+		if (res == NULL)
+		{
+			return (NULL);
+		}
+
+		res[0] = c_data->conversion_code;
+		res[1] = '\0';
+		return (res);
 	}
 
 	return (convertor_func(c_data, l));
