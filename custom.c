@@ -26,8 +26,6 @@ char *convert_printable(conversion_data *c_data, va_list l)
 			length += 3;
 	}
 
-	printf("S has length: %d\n", length);
-
 	res = malloc(length + 1);
 	if (res == NULL)
 		return (NULL);
@@ -45,8 +43,8 @@ char *convert_printable(conversion_data *c_data, va_list l)
 
 		hex = ultos(s[j], 16, 2);
 		to_upper(hex);
-		res [i++] = hex[0];
-		res [i] = hex[1];
+		res[i++] = hex[0];
+		res[i] = hex[1];
 		free(hex);
 	}
 

@@ -11,10 +11,10 @@ char *ltos(long l, int base, int precision)
 {
 	if (l > 0)
 	{
-		return (ultos((unsigned long) l, base, precision));
+		return (ultos((unsigned long)l, base, precision));
 	}
 
-	return (ultos((unsigned long) -l, base, precision));
+	return (ultos((unsigned long)-l, base, precision));
 }
 
 /**
@@ -27,7 +27,7 @@ char *ltos(long l, int base, int precision)
 char *ultos(unsigned long ul, int base, int precision)
 {
 	unsigned long curr = ul;
-	int i,  length = 0;
+	int i, length = 0;
 	char *map = "0123456789abcdef";
 	char *res;
 
@@ -70,9 +70,9 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
 
 	if (is_negative)
 		sign = "-";
-	else if (is_flag_active(c_data, F_POS_PADDING))
+	else if (flag_is_active(c_data, F_SPACE))
 		sign = " ";
-	else if (is_flag_active(c_data, F_SIGN))
+	else if (flag_is_active(c_data, F_SIGN))
 		sign = "+";
 
 	res = concat(sign, converted_num);

@@ -35,7 +35,6 @@ int buffer_push(const char *s, int min)
 {
 	int j = 0, res = 0;
 
-
 	while (s[j] != '\0')
 	{
 		res += buffer_push_char(s[j]);
@@ -58,7 +57,7 @@ int buffer_push(const char *s, int min)
  * Return: number of bytes printed if buffer is flushed during pushing
  */
 int buffer_push_conversion(conversion_data *c_data,
-		va_list l)
+													 va_list l)
 {
 	char *s = translate_conversion(c_data, l);
 	int res;
@@ -68,9 +67,9 @@ int buffer_push_conversion(conversion_data *c_data,
 
 	res = buffer_push(s, 0);
 
-	if (c_data->conversion_code != 's' &&
-			c_data->conversion_code != 'c' &&
-			c_data->conversion_code != '%')
+	if (c_data->code != 's' &&
+			c_data->code != 'c' &&
+			c_data->code != '%')
 		free(s);
 
 	return (res);

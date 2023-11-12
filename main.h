@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 #define BUFFER_SIZE 1024
-#define UNUSED(x) ((void) (x))
+#define UNUSED(x) ((void)(x))
 
 /**
  * struct conversion_data - data necessary to make a conversion
@@ -15,7 +15,7 @@
  * @min_width: minimum length of result string
  * @precision: precision of integer result
  * @len_mod: variable size modifier
- * @conversion_code: character used as conversion specifier
+ * @code: character used as conversion specifier
  */
 struct conversion_data
 {
@@ -23,11 +23,12 @@ struct conversion_data
 	int min_width;
 	int precision;
 	const char *len_mod;
-	char conversion_code;
+	char code;
 };
 
 typedef struct conversion_data conversion_data;
 
+/*TODO: implement funciton*/
 conversion_data *get_conversion_data(const char *c);
 
 /* STRING UTILS */
@@ -41,6 +42,8 @@ char *ultos(unsigned long l, int base, int precision);
 char *dtos(double f, int precision);
 
 int is_digit(char c);
+int is_flag(char c);
+int is_len_mod(char c);
 int is_nonprintable(char c);
 int stoi(const char *s);
 
@@ -50,7 +53,7 @@ enum flags
 	F_ALT = 1,
 	F_ZERO = 2,
 	F_LEFT = 4,
-	F_POS_PADDING = 8,
+	F_SPACE = 8,
 	F_SIGN = 16
 };
 
@@ -59,11 +62,15 @@ enum flags
  */
 typedef enum flags flag_t;
 
-int is_flag_active(conversion_data *c_data, flag_t flag);
+int flag_is_active(conversion_data *c_data, flag_t flag);
 void activate_flag(conversion_data *c_data, flag_t flag);
+
+/* TODO: Impliment funcitons */
 void apply_concat_flags(conversion_data *c_data, const char *current);
+/* */
 
 /* FIELD WIDTH */
+/* TODO: impliment func */
 char *apply_width(conversion_data *c_data, const char *s);
 
 /* LENGTH MODIFIERS */
@@ -87,7 +94,7 @@ char *convert_hex(conversion_data *c_data, va_list l);
 char *convert_HEX(conversion_data *c_data, va_list l);
 char *convert_address(conversion_data *c_data, va_list l);
 char *apply_sign(conversion_data *c_data, char *converted_num,
-		int is_negative);
+				 int is_negative);
 
 /* PRINT */
 int _putchar(unsigned char c);
@@ -99,7 +106,7 @@ int print_conversion(conversion_data *c_data, va_list l);
 int buffer_push(const char *s, int min);
 int buffer_push_char(int s);
 int buffer_push_conversion(conversion_data *c_data,
-		va_list l);
+						   va_list l);
 int flush_buffer(char *buffer, int *i);
 int _printf(const char *format, ...);
 

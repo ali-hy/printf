@@ -26,3 +26,27 @@ int is_nonprintable(char c)
 
 	return (0);
 }
+
+/**
+ * is_flag - check if char is a flag
+ * @c: char
+ * Return: flag if c is a flag, 0 if not
+ */
+int is_flag(char c)
+{
+	switch (c)
+	{
+		case '#':
+			return (F_ALT);
+		case '0':
+			return (F_ZERO);
+		case '-':
+			return (F_LEFT);
+		case ' ':
+			return (F_SPACE);
+		case '+':
+			return (F_SIGN);
+		default:
+			return (0);
+	}
+}

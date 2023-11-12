@@ -17,7 +17,7 @@ conversion_data *new_conversion()
 	conv->min_width = 0;
 	conv->precision = 0;
 	conv->len_mod = NULL;
-	conv->conversion_code = '\0';
+	conv->code = '\0';
 
 	return (conv);
 }
@@ -32,7 +32,7 @@ void reset_conversion(conversion_data *c_data)
 	c_data->min_width = 0;
 	c_data->precision = 0;
 	c_data->len_mod = NULL;
-	c_data->conversion_code = '\0';
+	c_data->code = '\0';
 }
 
 /**
@@ -53,6 +53,9 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	while (i < 256)
 		convertor_funcs[i++] = NULL;
 
+	/*
+		make a function "pick_convertor_func" and move convertor_funcs there
+	*/
 	convertor_funcs['c'] = convert_char;
 	convertor_funcs['s'] = convert_str;
 	convertor_funcs['%'] = percentage;
@@ -66,7 +69,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['S'] = convert_printable;
 	convertor_funcs['p'] = convert_address;
 
-	convertor_func = convertor_funcs[(int)c_data->conversion_code];
+	convertor_func = convertor_funcs[(int)c_data->code];
 	if (convertor_func == NULL)
 	{
 		res = malloc(3);
@@ -76,10 +79,15 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 		}
 
 		res[0] = '%';
-		res[1] = c_data->conversion_code;
+		res[1] = c_data->code;
 		res[2] = '\0';
 		return (res);
 	}
 
 	return (convertor_func(c_data, l));
 }
+
+/*
+	use the return value from convertor_func, and apply concat flags
+	pass the ruturn value of apply concat flag to apply width
+*/

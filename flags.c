@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * is_flag_active - checks if conversion data has a flag marked as active
+ * flag_is_active - checks if conversion data has a flag marked as active
  * @c_data: pointer to conversion data
  * @flag: flag to check for
  * Return: 1 if flag is active, 0 if flag isn't active
  */
-int is_flag_active(conversion_data *c_data, flag_t flag)
+int flag_is_active(conversion_data *c_data, flag_t flag)
 {
 	if ((c_data->flag_comb & flag) > 0)
 		return (1);

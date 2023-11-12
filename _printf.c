@@ -11,7 +11,7 @@ int print_conversion(conversion_data *c_data, va_list l)
 	char *s = translate_conversion(c_data, l);
 	int res = _putstr(s);
 
-	if (c_data->conversion_code != '%')
+	if (c_data->code != '%')
 		free(s);
 
 	return (res);
@@ -31,27 +31,33 @@ int _printf(const char *format, ...)
 
 	reset_conversion(&c_data);
 
-	va_start(l, format);
-	if (format != NULL)
-		for (i = 0; format[i] != '\0'; i++)
-		{
-			if (convert)
-			{
-				c_data.conversion_code = format[i];
-				res += buffer_push_conversion(&c_data, l);
+	if (format == NULL)
+		return (-1);
 
-				convert = 0;
-			}
-			else if (format[i] == '%')
-			{
-				convert = 1;
-			}
-			else
-			{
-				res += buffer_push_char(format[i]);
-			}
+	va_start(l, format);
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (convert)
+		{
+			c_data.code = format[i];
+			res += buffer_push_conversion(&c_data, l);
+
+			convert = 0;
 		}
+		else if (format[i] == '%')
+		{
+			convert = 1;
+		}
+		else
+		{
+			res += buffer_push_char(format[i]);
+		}
+	}
 	va_end(l);
+
+	if (convert)
+		return (-1);
+
 	res += buffer_push_char(-1);
 
 	return (res);
