@@ -11,13 +11,8 @@ int main(void)
 {
 	int i = 0;
 
-	_printf("This is the smallest number of them all: %d\n", INT_MIN);
+	i = _printf("12%c3", '\0');
+	_printf("\nTHAT WAS %d CHARS LONG", i);
 
-	for(i = -100; i < 100; i++)
-	{
-		_printf("This is a number: %i\n", i);
-	}
-
-	_printf("This is the largest number of them all: %d\n", INT_MAX);
 	return (0);
 }

@@ -25,11 +25,18 @@ int buffer_push_char(char *buffer, int *i, char c)
  * @s: string to push to buffer
  * Return: number if bytes printed if buffer is flushed during pushing
  */
-int buffer_push(char *buffer, int *i, const char *s)
+int buffer_push(char *buffer, int *i, const char *s, int min)
 {
 	int j = 0, res = 0;
 
 	while (s[j] != '\0')
+	{
+		buffer_push_char(buffer, i, s[j]);
+		j++;
+	}
+
+	
+	while (j < min)
 	{
 		buffer_push_char(buffer, i, s[j]);
 		j++;
@@ -55,7 +62,11 @@ int buffer_push_conversion(char *buffer, int *i, conversion_data *c_data,
 	if (s == NULL)
 		return (0);
 
-	res = buffer_push(buffer, i, s);
+	if (c_data->conversion_code == 'c')
+		res = buffer_push(buffer, i, s, 1);
+	else
+		res = buffer_push(buffer, i, s, 0);
+
 	if (c_data->conversion_code != '%')
 		free(s);
 

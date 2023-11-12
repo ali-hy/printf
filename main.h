@@ -89,7 +89,7 @@ int _putstr(const char *s);
 char *translate_conversion(conversion_data *c_data, va_list l);
 int print_conversion(conversion_data *c_data, va_list l);
 
-int buffer_push(char *buffer, int *i, const char *s);
+int buffer_push(char *buffer, int *i, const char *s, int min);
 int buffer_push_char(char *buffer, int *i, char s);
 int buffer_push_conversion(char *buffer, int *i, conversion_data *c_data,
 		va_list l);
