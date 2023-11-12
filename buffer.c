@@ -29,6 +29,7 @@ int buffer_push(char *buffer, int *i, const char *s, int min)
 {
 	int j = 0, res = 0;
 
+
 	while (s[j] != '\0')
 	{
 		res += buffer_push_char(buffer, i, s[j]);

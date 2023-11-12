@@ -26,7 +26,7 @@ int len(const char *s)
 char *copy(const char *s)
 {
 	int i, length = len(s);
-	char *res = malloc(length);
+	char *res = malloc(length + 1);
 
 	if (res == NULL || s == NULL)
 		return (NULL);
@@ -35,6 +35,8 @@ char *copy(const char *s)
 	{
 		res[i] = s[i];
 	}
+
+	res[i] = '\0';
 
 	return (res);
 }

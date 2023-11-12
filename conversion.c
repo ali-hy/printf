@@ -102,14 +102,15 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
 	{
-		res = malloc(2);
+		res = malloc(3);
 		if (res == NULL)
 		{
 			return (NULL);
 		}
 
-		res[0] = c_data->conversion_code;
-		res[1] = '\0';
+		res[0] = '%';
+		res[1] = c_data->conversion_code;
+		res[2] = '\0';
 		return (res);
 	}
 
