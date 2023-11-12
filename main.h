@@ -40,6 +40,7 @@ char *ultos(unsigned long l, int base, int precision);
 char *dtos(double f, int precision);
 
 int is_digit(char c);
+int is_printable(char c);
 int stoi(const char *s);
 
 /* FLAGS */

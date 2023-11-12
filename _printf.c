@@ -33,24 +33,25 @@ int _printf(const char *format, ...)
 	*buffer_index = 0;
 
 	va_start(l, format);
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (convert)
+	if (format != NULL)
+		for (i = 0; format[i] != '\0'; i++)
 		{
-			c_data->conversion_code = format[i];
-			res += buffer_push_conversion(buffer, buffer_index, c_data, l);
+			if (convert)
+			{
+				c_data->conversion_code = format[i];
+				res += buffer_push_conversion(buffer, buffer_index, c_data, l);
 
-			convert = 0;
+				convert = 0;
+			}
+			else if (format[i] == '%')
+			{
+				convert = 1;
+			}
+			else
+			{
+				res += buffer_push_char(buffer, buffer_index, format[i]);
+			}
 		}
-		else if (format[i] == '%')
-		{
-			convert = 1;
-		}
-		else
-		{
-			res += buffer_push_char(buffer, buffer_index, format[i]);
-		}
-	}
 	va_end(l);
 	res = flush_buffer(buffer, buffer_index);
 

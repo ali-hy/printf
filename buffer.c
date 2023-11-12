@@ -9,11 +9,13 @@
  */
 int buffer_push_char(char *buffer, int *i, char c)
 {
-	buffer[*i] = c;
-	(*i)++;
+	int res = 0;
 
 	if ((*i) >= BUFFER_SIZE)
-		return (flush_buffer(buffer, i));
+		res +=  (flush_buffer(buffer, i));
+
+	buffer[*i] = c;
+	(*i)++;
 
 	return (0);
 }
@@ -23,6 +25,7 @@ int buffer_push_char(char *buffer, int *i, char c)
  * @buffer: buffer
  * @i: index to start pushing to
  * @s: string to push to buffer
+ * @min: min number of chars to print
  * Return: number if bytes printed if buffer is flushed during pushing
  */
 int buffer_push(char *buffer, int *i, const char *s, int min)
@@ -35,7 +38,7 @@ int buffer_push(char *buffer, int *i, const char *s, int min)
 		res += buffer_push_char(buffer, i, s[j]);
 		j++;
 	}
-	
+
 	while (j < min)
 	{
 		res += buffer_push_char(buffer, i, s[j]);
