@@ -16,8 +16,11 @@ int buffer_push_char(int c)
 		res += (flush_buffer(buffer, &i));
 	}
 
-	buffer[i] = (char)c;
-	i++;
+	if (c >= 0)
+	{
+		buffer[i] = (char)c;
+		i++;
+	}
 
 	return (res);
 }
