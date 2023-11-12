@@ -72,6 +72,8 @@ int get_conversion_base(char *len_mod);
 /* CONVERT */
 conversion_data *new_conversion();
 void reset_conversion(conversion_data *c_data);
+char *test_conversion(conversion_data *c_data, ...);
+
 char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
 char *convert_printable(conversion_data *data, va_list l);
@@ -94,11 +96,11 @@ int _putstr(const char *s);
 char *translate_conversion(conversion_data *c_data, va_list l);
 int print_conversion(conversion_data *c_data, va_list l);
 
-int buffer_push(char *buffer, int *i, const char *s, int min);
-int buffer_push_char(char *buffer, int *i, char s);
-int buffer_push_conversion(char *buffer, int *i, conversion_data *c_data,
+int buffer_push(const char *s, int min);
+int buffer_push_char(int s);
+int buffer_push_conversion(conversion_data *c_data,
 		va_list l);
-int flush_buffer(const char *buffer, int *i);
+int flush_buffer(char *buffer, int *i);
 int _printf(const char *format, ...);
 
 #endif /* MAIN_H */

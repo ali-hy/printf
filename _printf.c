@@ -25,10 +25,11 @@ int print_conversion(conversion_data *c_data, va_list l)
  */
 int _printf(const char *format, ...)
 {
-	int i, convert = 0, res = 0, buffer_index = 0;
-	conversion_data *c_data = new_conversion();
-	char buffer[BUFFER_SIZE];
+	int i, convert = 0, res = 0;
+	conversion_data c_data;
 	va_list l;
+
+	reset_conversion(&c_data);
 
 	va_start(l, format);
 	if (format != NULL)
@@ -36,8 +37,8 @@ int _printf(const char *format, ...)
 		{
 			if (convert)
 			{
-				c_data->conversion_code = format[i];
-				res += buffer_push_conversion(buffer, &buffer_index, c_data, l);
+				c_data.conversion_code = format[i];
+				res += buffer_push_conversion(&c_data, l);
 
 				convert = 0;
 			}
@@ -47,13 +48,11 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				res += buffer_push_char(buffer, &buffer_index, format[i]);
+				res += buffer_push_char(format[i]);
 			}
 		}
 	va_end(l);
-	res = flush_buffer(buffer, &buffer_index);
-
-	free(c_data);
+	res += buffer_push_char(-1);
 
 	return (res);
 }

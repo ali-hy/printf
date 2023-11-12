@@ -9,15 +9,12 @@
 char *convert_char(conversion_data *c_data, va_list l)
 {
 	unsigned char c = va_arg(l, int);
-	char *res = malloc(2 * sizeof(char));
 
-	if (res == NULL || c_data == NULL)
-		return (NULL);
+	UNUSED(c_data);
 
-	res[0] = c;
-	res[1] = '\0';
+	buffer_push_char(c);
 
-	return (res);
+	return ("");
 }
 
 /**
@@ -28,15 +25,14 @@ char *convert_char(conversion_data *c_data, va_list l)
  */
 char *convert_str(conversion_data *c_data, va_list l)
 {
-	const char *s = va_arg(l, const char *);
-	char *res = copy(s);
+	char *s = va_arg(l, char *);
 
 	UNUSED(c_data);
 
-	if (res == NULL)
-		return (copy("(null)"));
+	if (s == NULL)
+		return ("(null)");
 
-	return (res);
+	return (s);
 }
 
 /**

@@ -23,6 +23,19 @@ conversion_data *new_conversion()
 }
 
 /**
+ * reset_conversion - resets conversion memebers
+ * @c_data: conversion data
+ */
+void reset_conversion(conversion_data *c_data)
+{
+	c_data->flag_comb = 0;
+	c_data->min_width = 0;
+	c_data->precision = 0;
+	c_data->len_mod = NULL;
+	c_data->conversion_code = '\0';
+}
+
+/**
  * translate_conversion - turns conversion into string
  * @c_data: conversion data
  * @l: args list
@@ -40,9 +53,9 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	while (i < 256)
 		convertor_funcs[i++] = NULL;
 
-	convertor_funcs['c'] = convert_char; 
+	convertor_funcs['c'] = convert_char;
 	convertor_funcs['s'] = convert_str;
-	convertor_funcs['%'] = percentage; 
+	convertor_funcs['%'] = percentage;
 	convertor_funcs['d'] = convert_dec;
 	convertor_funcs['i'] = convert_dec;
 	convertor_funcs['b'] = convert_bin;
@@ -53,7 +66,6 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	convertor_funcs['S'] = convert_printable;
 	convertor_funcs['p'] = convert_address;
 
-	
 	convertor_func = convertor_funcs[(int)c_data->conversion_code];
 	if (convertor_func == NULL)
 	{
