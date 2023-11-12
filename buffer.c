@@ -31,14 +31,13 @@ int buffer_push(char *buffer, int *i, const char *s, int min)
 
 	while (s[j] != '\0')
 	{
-		buffer_push_char(buffer, i, s[j]);
+		res += buffer_push_char(buffer, i, s[j]);
 		j++;
 	}
-
 	
 	while (j < min)
 	{
-		buffer_push_char(buffer, i, s[j]);
+		res += buffer_push_char(buffer, i, s[j]);
 		j++;
 	}
 
