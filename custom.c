@@ -11,7 +11,7 @@ char *convert_printable(conversion_data *c_data, va_list l)
 {
 	int length = 0, i = 0, j = 0;
 	const char *s = va_arg(l, const char *);
-	char *res;
+	char *res, *hex;
 
 	UNUSED(c_data);
 
@@ -22,8 +22,11 @@ char *convert_printable(conversion_data *c_data, va_list l)
 	{
 		i++;
 		length++;
-		length += is_nonprintable(s[i]);
+		if (is_nonprintable(s[i]))
+			length += 3;
 	}
+
+	printf("S has length: %d\n", length);
 
 	res = malloc(length + 1);
 	if (res == NULL)
@@ -38,7 +41,13 @@ char *convert_printable(conversion_data *c_data, va_list l)
 		}
 
 		res[i++] = '\\';
-		res[i] = 'x';
+		res[i++] = 'x';
+
+		hex = ultos(s[j], 16, 2);
+		to_upper(hex);
+		res [i++] = hex[0];
+		res [i] = hex[1];
+		free(hex);
 	}
 
 	return (res);

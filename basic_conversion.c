@@ -44,4 +44,3 @@ char *percentage()
 	return ("%");
 }
 
-
