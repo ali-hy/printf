@@ -98,7 +98,7 @@ char *to_upper(char *s)
 	return (s);
 }
 
-int stoi(char **s)
+int stoi(const char **s)
 {
 	int res = 0;
 	

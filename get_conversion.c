@@ -3,14 +3,14 @@
 conversion_data get_conversion_data(const char *s)
 {
     conversion_data c_data;
-    reset_conversion(&c_data);
     flag_t cur_flag = is_flag(*s);
 
+    reset_conversion(&c_data);
     while (cur_flag)
     {
         activate_flag(&c_data, cur_flag);
         s++;
-        cur_flag = is_flag(s);
+        cur_flag = is_flag(*s);
     }
     c_data.min_width = stoi(&s);
     if (*s == '.')
@@ -24,4 +24,6 @@ conversion_data get_conversion_data(const char *s)
         s++;
     }
     c_data.code = *s;
+    
+    return(c_data);
 }
