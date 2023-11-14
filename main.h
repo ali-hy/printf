@@ -11,7 +11,7 @@
 #define UNUSED(x) ((void)(x))
 
 /**
- * struct conversion_data - data necessary to make a conversion
+ * struct conv_data - data necessary to make a conversion
  * @flag_comb: number that indicates used flags
  * @min_width: minimum length of result string
  * @precision: precision of integer result
