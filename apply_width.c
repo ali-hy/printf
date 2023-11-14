@@ -42,6 +42,7 @@ char *blank(conv_data *c_data, int n)
 	res[n] = '\0';
 	while (--n >= 0)
 	{
+		printf("loop ongoing\n");
 		res[n] = c;
 	}
 	return (res);

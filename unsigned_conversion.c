@@ -1,6 +1,25 @@
 #include "main.h"
 
 /**
+ * get_mask - gets binary mask for different num sizes
+ * @c_data: conversion data
+ * Return: mask
+*/
+unsigned long get_mask(conv_data *c_data)
+{
+	unsigned long mask = ULONG_MAX;
+	
+	if (c_data->len_mod == NULL)
+		mask = UINT_MAX;
+	else if (*(c_data->len_mod) == 'h')
+		mask = USHRT_MAX;
+	
+	printf("mask: %d\n", mask);
+
+	return (mask);
+}
+
+/**
  * convert_uns - converts unsigned short/int/long to decimal string
  * @c_data: conversion data
  * @l: args list
@@ -8,7 +27,8 @@
  */
 char *convert_uns(conv_data *c_data, va_list l)
 {
-	unsigned long num = capture_num(c_data, l);
+	unsigned long mask = get_mask(c_data);
+	unsigned long num = capture_num(c_data, l) & mask;
 
 	if (c_data == NULL)
 		return (NULL);
@@ -25,7 +45,8 @@ char *convert_uns(conv_data *c_data, va_list l)
 char *convert_oct(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = capture_num(c_data, l);
+	unsigned long mask = get_mask(c_data);
+	unsigned long num = capture_num(c_data, l) & mask;
 
 	if (c_data == NULL)
 		return (NULL);
@@ -50,7 +71,8 @@ char *convert_oct(conv_data *c_data, va_list l)
 char *convert_hex(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = capture_num(c_data, l);
+	unsigned long mask = get_mask(c_data);
+	unsigned long num = capture_num(c_data, l) & mask;
 
 	if (c_data == NULL)
 		return (NULL);
@@ -76,7 +98,9 @@ char *convert_hex(conv_data *c_data, va_list l)
 char *convert_HEX(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = capture_num(c_data, l);
+	unsigned long mask = get_mask(c_data);
+	unsigned long num = capture_num(c_data, l) & mask;
+
 
 	if (c_data == NULL)
 		return (NULL);

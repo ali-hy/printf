@@ -40,6 +40,7 @@ char *to_upper(char *s1);
 char *ltos(long l, int base, int precision);
 char *ultos(unsigned long l, int base, int precision);
 char *dtos(double f, int precision);
+unsigned long get_mask(conv_data *c_data);
 
 int is_digit(char c);
 int is_flag(char c);
@@ -78,7 +79,7 @@ char *blank(conv_data *c_data, int n);
 int capture_int(va_list l);
 unsigned int capture_uint(va_list l);
 long capture_long(va_list l);
-long capture_num(conv_data *c_data, va_list l);
+unsigned long capture_num(conv_data *c_data, va_list l);
 
 /* CONVERT */
 conv_data *new_conversion();

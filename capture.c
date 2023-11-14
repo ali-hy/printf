@@ -26,7 +26,7 @@ long capture_long(va_list l)
  * @l: arg list
  * Return: correct type of num from arg list
 */
-long capture_num(conv_data *c_data, va_list l)
+unsigned long capture_num(conv_data *c_data, va_list l)
 {
 	if (c_data->len_mod == NULL)
 		return (capture_int(l));
