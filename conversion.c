@@ -65,7 +65,8 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	{
 		temp = converter_func(c_data, l);
 		res = apply_width(c_data, temp);
-		free(temp);
+		if (c_data->code != 's')
+			free(temp);
 		
 	}
 	return (res);
