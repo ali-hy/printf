@@ -44,32 +44,9 @@ void reset_conversion(conversion_data *c_data)
 char *translate_conversion(conversion_data *c_data, va_list l)
 {
 	char *(*convertor_func)(conversion_data *, va_list);
-
-	char *(*convertor_funcs[256])(conversion_data *, va_list);
 	char *res;
 
-	int i = 0;
-
-	while (i < 256)
-		convertor_funcs[i++] = NULL;
-
-	/*
-		make a function "pick_convertor_func" and move convertor_funcs there
-	*/
-	convertor_funcs['c'] = convert_char;
-	convertor_funcs['s'] = convert_str;
-	convertor_funcs['%'] = percentage;
-	convertor_funcs['d'] = convert_dec;
-	convertor_funcs['i'] = convert_dec;
-	convertor_funcs['b'] = convert_bin;
-	convertor_funcs['u'] = convert_uns;
-	convertor_funcs['o'] = convert_oct;
-	convertor_funcs['x'] = convert_hex;
-	convertor_funcs['X'] = convert_HEX;
-	convertor_funcs['S'] = convert_printable;
-	convertor_funcs['p'] = convert_address;
-
-	convertor_func = convertor_funcs[(int)c_data->code];
+	convertor_func =pick_convertor_func(c_data, l) ;
 	if (convertor_func == NULL)
 	{
 		res = malloc(3);
@@ -85,6 +62,30 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	}
 
 	return (convertor_func(c_data, l));
+}
+
+char *pick_convertor_func(conversion_data *c_data, va_list l )
+{
+	char *(*convertor_funcs[256])(conversion_data *, va_list);
+	
+	int i = 0;
+
+	while (i < 256)
+		convertor_funcs[i++] = NULL;
+		
+	convertor_funcs['c'] = convert_char;
+	convertor_funcs['s'] = convert_str;
+	convertor_funcs['%'] = percentage;
+	convertor_funcs['d'] = convert_dec;
+	convertor_funcs['i'] = convert_dec;
+	convertor_funcs['b'] = convert_bin;
+	convertor_funcs['u'] = convert_uns;
+	convertor_funcs['o'] = convert_oct;
+	convertor_funcs['x'] = convert_hex;
+	convertor_funcs['X'] = convert_HEX;
+	convertor_funcs['S'] = convert_printable;
+	convertor_funcs['p'] = convert_address;
+	return (convertor_funcs[(int)c_data->code]);
 }
 
 /*

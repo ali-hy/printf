@@ -80,7 +80,7 @@ int get_conversion_base(char *len_mod);
 conversion_data *new_conversion();
 void reset_conversion(conversion_data *c_data);
 char *test_conversion(conversion_data *c_data, ...);
-
+char *pick_convertor_func(conversion_data *c_data, va_list l );
 char *convert_char(conversion_data *c_data, va_list l);
 char *convert_str(conversion_data *c_data, va_list l);
 char *convert_printable(conversion_data *data, va_list l);
