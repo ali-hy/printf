@@ -14,8 +14,6 @@ unsigned long get_mask(conv_data *c_data)
 	else if (*(c_data->len_mod) == 'h')
 		mask = USHRT_MAX;
 
-	printf("mask: %d\n", mask);
-
 	return (mask);
 }
 
