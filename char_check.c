@@ -20,7 +20,7 @@ int is_digit(char c)
  */
 int is_nonprintable(char c)
 {
-	if ((0 < c && c < 32) || c >= 127)
+	if ((c > 0 && c < 32) || c >= 127)
 		return (1);
 
 	return (0);
