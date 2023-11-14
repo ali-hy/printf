@@ -44,9 +44,9 @@ void reset_conversion(conversion_data *c_data)
 char *translate_conversion(conversion_data *c_data, va_list l)
 {
 	char *(*convertor_func)(conversion_data *, va_list);
-	char *res;
+	char *res, *temp;
 
-	convertor_func =pick_convertor_func(c_data) ;
+	convertor_func = pick_convertor_func(c_data) ;
 	if (convertor_func == NULL)
 	{
 		res = malloc(3);
@@ -61,7 +61,14 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 		return (res);
 	}
 
-	return (convertor_func(c_data, l));
+	if (c_data->code != 'c')
+	{
+		temp = converter_func(c_data, l);
+		res = apply_width(c_data, temp);
+		free(temp);
+		
+	}
+	return (res);
 }
 
 
@@ -88,8 +95,3 @@ char *(*pick_convertor_func(conversion_data *c_data))(conversion_data *, va_list
 	convertor_funcs['p'] = convert_address;
 	return (convertor_funcs[(int)c_data->code]);
 }
-
-/*
-	use the return value from convertor_func, and apply concat flags
-	pass the ruturn value of apply concat flag to apply width
-*/

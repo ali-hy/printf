@@ -1,12 +1,12 @@
 #include "main.h"
 
-char *apply_width(conversion_data *c_data, const char *s)
+char *apply_width(conversion_data *c_data, char *s)
 {
     int length = len(s);
-    char *res,*temp;
+    char *res = s,*temp;
 
     if (length >= c_data->min_width)
-        return (s);
+        return (res);
     
     if (c_data->code != 'c')
     {
@@ -16,8 +16,6 @@ char *apply_width(conversion_data *c_data, const char *s)
         else
             res = concat(temp, s);
         free (temp);
-        if (c_data->code != 's')
-            free(s);
     }
     
     return (res);
@@ -31,7 +29,7 @@ char *blank(conversion_data *c_data, int n)
     if (res == NULL)
         return (NULL);
     
-    res[n] = '/0';
+    res[n] = '\0';
     while (--n >= 0)
     {
         res[n] = c;

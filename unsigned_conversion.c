@@ -80,7 +80,9 @@ char *convert_HEX(conversion_data *c_data, va_list l)
 
 	if (c_data == NULL)
 		return (NULL);
-	temp = to_upper(ultos(num, 16, 0));
+
+	temp = ultos(num, 16, 0);	
+	to_upper(temp);
 	res = temp;
 	if (flag_is_active(c_data, F_ALT))
 		if (num != 0)

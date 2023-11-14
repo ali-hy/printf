@@ -67,8 +67,7 @@ int buffer_push_conversion(conversion_data *c_data,
 
 	res = buffer_push(s, 0);
 
-	if (c_data->code != 's' &&
-			c_data->code != 'c' &&
+	if (c_data->code != 'c' &&
 			c_data->code != '%')
 		free(s);
 

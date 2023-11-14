@@ -69,7 +69,7 @@ void apply_concat_flags(conversion_data *c_data, const char *current);
 /* */
 
 /* FIELD WIDTH */
-char *apply_width(conversion_data *c_data, const char *s);
+char *apply_width(conversion_data *c_data, char *s);
 char *blank(conversion_data *c_data, int n);
 
 /* LENGTH MODIFIERS */
