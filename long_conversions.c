@@ -113,7 +113,7 @@ char *convert_bin(conv_data *c_data, va_list l)
 char *convert_dec(conv_data *c_data, va_list l)
 {
 	long num = capture_num(c_data, l);
-	char *temp = ltos(num, 10, 0);
+	char *temp = ltos(num, 10, c_data->precision);
 	char *res = apply_sign(c_data, temp, num < 0);
 
 	free(temp);
