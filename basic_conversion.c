@@ -7,14 +7,15 @@
  * Return: resulting string
  */
 char *convert_char(conversion_data *c_data, va_list l)
-{
+{	
+	char *res = malloc(2);
 	unsigned char c = va_arg(l, int);
 
 	UNUSED(c_data);
 
-	buffer_push_char(c);
-
-	return ("");
+	res[0] = c;
+	res[1] = '\0';
+	return (res);
 }
 
 /**
