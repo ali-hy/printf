@@ -25,7 +25,7 @@ int print_conversion(conversion_data *c_data, va_list l)
  */
 int _printf(const char *format, ...)
 {
-	int i, convert = 0, res = 0;
+	int convert = 0, res = 0;
 	conversion_data c_data;
 	va_list l;
 
@@ -35,22 +35,22 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(l, format);
-	for (i = 0; format[i] != '\0'; i++)
+	while (format[0] != '\0')
 	{
 		if (convert)
 		{
-			c_data.code = format[i];
+			c_data = get_conversion_data(&format);
 			res += buffer_push_conversion(&c_data, l);
 
 			convert = 0;
 		}
-		else if (format[i] == '%')
+		else if (format[0] == '%')
 		{
 			convert = 1;
 		}
 		else
 		{
-			res += buffer_push_char(format[i]);
+			res += buffer_push_char(format[0]);
 		}
 	}
 	va_end(l);

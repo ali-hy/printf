@@ -70,11 +70,11 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
 
 	if (is_negative)
 		sign = "-";
-	else if (flag_is_active(c_data, F_SPACE))
-		sign = " ";
 	else if (flag_is_active(c_data, F_SIGN))
 		sign = "+";
-
+	else if (flag_is_active(c_data, F_SPACE))
+		sign = " ";
+		
 	res = concat(sign, converted_num);
 	free(converted_num);
 	return (res);
