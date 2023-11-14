@@ -64,6 +64,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	return (convertor_func(c_data, l));
 }
 
+
 char *(*pick_convertor_func(conversion_data *c_data))(conversion_data *, va_list)
 {
 	char *(*convertor_funcs[256])(conversion_data *, va_list);
