@@ -33,7 +33,7 @@ char *convert_uns(conv_data *c_data, va_list l)
 	if (c_data == NULL)
 		return (NULL);
 
-	return (ultos(num, 10, 0));
+	return (ultos(num, 10, c_data->precision));
 }
 
 /**
@@ -51,7 +51,7 @@ char *convert_oct(conv_data *c_data, va_list l)
 	if (c_data == NULL)
 		return (NULL);
 
-	temp = ultos(num, 8, 0);
+	temp = ultos(num, 8, c_data->precision);
 	res = temp;
 	if (flag_is_active(c_data, F_ALT))
 		if (temp[0] != '0')
@@ -77,7 +77,7 @@ char *convert_hex(conv_data *c_data, va_list l)
 	if (c_data == NULL)
 		return (NULL);
 
-	temp = ultos(num, 16, 0);
+	temp = ultos(num, 16, c_data->precision);
 	res = temp;
 	if (flag_is_active(c_data, F_ALT))
 		if (num != 0)
@@ -105,7 +105,7 @@ char *convert_HEX(conv_data *c_data, va_list l)
 	if (c_data == NULL)
 		return (NULL);
 
-	temp = ultos(num, 16, 0);
+	temp = ultos(num, 16, c_data->precision);
 	to_upper(temp);
 	res = temp;
 	if (flag_is_active(c_data, F_ALT))
