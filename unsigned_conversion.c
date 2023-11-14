@@ -6,7 +6,7 @@
  * @l: args list
  * Return: string that represents unsigned short/int/long in decimal system
  */
-char *convert_uns(conversion_data *c_data, va_list l)
+char *convert_uns(conv_data *c_data, va_list l)
 {
 	unsigned long num = capture_num(c_data, l);
 
@@ -22,7 +22,7 @@ char *convert_uns(conversion_data *c_data, va_list l)
  * @l: args list
  * Return: string that represents short/int/long in octal system
  */
-char *convert_oct(conversion_data *c_data, va_list l)
+char *convert_oct(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
 	unsigned long num = capture_num(c_data, l);
@@ -47,7 +47,7 @@ char *convert_oct(conversion_data *c_data, va_list l)
  * @l: args list
  * Return: string that represents short/int/long in hexadecimal system
  */
-char *convert_hex(conversion_data *c_data, va_list l)
+char *convert_hex(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
 	unsigned long num = capture_num(c_data, l);
@@ -61,7 +61,7 @@ char *convert_hex(conversion_data *c_data, va_list l)
 		if (num != 0)
 		{
 			res = concat("0x", temp);
-			free (temp);
+			free(temp);
 		}
 	return (res);
 }
@@ -73,7 +73,7 @@ char *convert_hex(conversion_data *c_data, va_list l)
  * Return: string that represents short/int/long in hexadecimal system
  * (uppercase)
  */
-char *convert_HEX(conversion_data *c_data, va_list l)
+char *convert_HEX(conv_data *c_data, va_list l)
 {
 	char *temp, *res;
 	unsigned long num = capture_num(c_data, l);
@@ -81,14 +81,14 @@ char *convert_HEX(conversion_data *c_data, va_list l)
 	if (c_data == NULL)
 		return (NULL);
 
-	temp = ultos(num, 16, 0);	
+	temp = ultos(num, 16, 0);
 	to_upper(temp);
 	res = temp;
 	if (flag_is_active(c_data, F_ALT))
 		if (num != 0)
 		{
 			res = concat("0X", temp);
-			free (temp);
+			free(temp);
 		}
 	return (res);
 }

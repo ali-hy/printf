@@ -13,7 +13,6 @@ int is_digit(char c)
 	return (0);
 }
 
-
 /**
  * is_nonprintable - check if char is printable for S specifier
  * @c: char
@@ -51,7 +50,29 @@ int is_flag(char c)
 	}
 }
 
+/**
+ * is_len_mod - checks if c is a length modifier
+ * @c: a char
+ * Return: 1 if yes, 0 if no
+*/
 int is_len_mod(char c)
 {
 	return (c == 'h' || c == 'l');
+}
+
+/**
+ * is_number_code - checks if code is for a number conversion
+ * @c: the code
+ * Return: 1 if yes, 0 if no
+*/
+int is_number_code(char c)
+{
+	char num_codes[] = {'i', 'd', 'o', 'u', 'x', 'X', '\0'};
+	int i = 0;
+
+	while (num_codes[i] != '\0')
+		if (num_codes[i] == c)
+			return (1);
+
+	return (0);
 }

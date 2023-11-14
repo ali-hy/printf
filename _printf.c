@@ -6,7 +6,7 @@
  * @l: args list
  * Return: number of characters printed
  */
-int print_conversion(conversion_data *c_data, va_list l)
+int print_conversion(conv_data *c_data, va_list l)
 {
 	char *s = translate_conversion(c_data, l);
 	int res = _putstr(s);
@@ -26,7 +26,7 @@ int print_conversion(conversion_data *c_data, va_list l)
 int _printf(const char *format, ...)
 {
 	int convert = 0, res = 0;
-	conversion_data c_data;
+	conv_data c_data;
 	va_list l;
 
 	reset_conversion(&c_data);

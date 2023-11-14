@@ -7,7 +7,7 @@
  * @l: args list
  * Return: string where non-printable characters are replaced with \x
  */
-char *convert_printable(conversion_data *c_data, va_list l)
+char *convert_printable(conv_data *c_data, va_list l)
 {
 	int length = 0, i = 0, j = 0;
 	const char *s = va_arg(l, const char *);

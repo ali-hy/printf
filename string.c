@@ -98,10 +98,15 @@ char *to_upper(char *s)
 	return (s);
 }
 
+/**
+ * stoi - convert string to int
+ * @s: pointer to start of int representation in string
+ * Return: int represented in string
+*/
 int stoi(const char **s)
 {
 	int res = 0;
-	
+
 	while (is_digit(**s))
 	{
 		res *= 10;

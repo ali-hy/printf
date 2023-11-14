@@ -6,7 +6,7 @@
  * @l: arg list
  * Return: string of address written in hexadecimal
  */
-char *convert_address(conversion_data *c_data, va_list l)
+char *convert_address(conv_data *c_data, va_list l)
 {
 	unsigned long num = va_arg(l, long);
 	char *res, *converted_num;

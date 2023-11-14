@@ -64,20 +64,20 @@ char *ultos(unsigned long ul, int base, int precision)
  * @is_negative: 0 if the number is negative, 1 if the number isn't
  * Return: new string representing the number, but with the correct sign
  */
-char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
+char *apply_sign(conv_data *c_data, char *converted_num, int is_negative)
 {
-    char *sign = "", *res;
-	
-    if (is_negative)
+	char *sign = "", *res;
+
+	if (is_negative)
 		sign = "-";
-    else if (flag_is_active(c_data, F_SIGN))
+	else if (flag_is_active(c_data, F_SIGN))
 		sign = "+";
-    else if (flag_is_active(c_data, F_SPACE))
+	else if (flag_is_active(c_data, F_SPACE))
 		sign = " ";
 
-    res = concat(sign, converted_num);
+	res = concat(sign, converted_num);
 
-    return (res);
+	return (res);
 }
 
 /**
@@ -86,7 +86,7 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
  * @l: argument list
  * Return: string representing argument in binary number system
  */
-char *convert_bin(conversion_data *c_data, va_list l)
+char *convert_bin(conv_data *c_data, va_list l)
 {
 	unsigned int num = capture_num(c_data, l);
 	char *res;
@@ -110,12 +110,13 @@ char *convert_bin(conversion_data *c_data, va_list l)
  * @l: argument list
  * Return: string representing argument in decimal number system
  */
-char *convert_dec(conversion_data *c_data, va_list l)
+char *convert_dec(conv_data *c_data, va_list l)
 {
-    long num = capture_num(c_data, l);
-    char *temp = ltos(num, 10, 0);
-    char *res = apply_sign(c_data, temp, num < 0);
-    free(temp);
+	long num = capture_num(c_data, l);
+	char *temp = ltos(num, 10, 0);
+	char *res = apply_sign(c_data, temp, num < 0);
 
-    return (res);
+	free(temp);
+
+	return (res);
 }

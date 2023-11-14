@@ -4,9 +4,9 @@
  * new_conversion - makes new conversion_data object
  * Return: new conversion_data object
  */
-conversion_data *new_conversion()
+conv_data *new_conversion()
 {
-	conversion_data *conv = malloc(sizeof(conversion_data));
+	conv_data *conv = malloc(sizeof(conv_data));
 
 	if (conv == NULL)
 	{
@@ -26,7 +26,7 @@ conversion_data *new_conversion()
  * reset_conversion - resets conversion memebers
  * @c_data: conversion data
  */
-void reset_conversion(conversion_data *c_data)
+void reset_conversion(conv_data *c_data)
 {
 	c_data->flag_comb = 0;
 	c_data->min_width = 0;
@@ -41,12 +41,12 @@ void reset_conversion(conversion_data *c_data)
  * @l: args list
  * Return: string represented by conversion
  */
-char *translate_conversion(conversion_data *c_data, va_list l)
+char *translate_conversion(conv_data *c_data, va_list l)
 {
-	char *(*convertor_func)(conversion_data *, va_list);
+	char *(*convertor_func)(conv_data *, va_list);
 	char *res, *temp;
 
-	convertor_func = pick_convertor_func(c_data) ;
+	convertor_func = pick_convertor_func(c_data);
 	if (convertor_func == NULL)
 	{
 		res = malloc(3);
@@ -73,16 +73,20 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 	return (res);
 }
 
-
-char *(*pick_convertor_func(conversion_data *c_data))(conversion_data *, va_list)
+/**
+ * pick_convertor_func - picks a convertor function to carry out conversion
+ * @c_data: conversion_data containing code
+ * Return: pointer to correct convertor function
+*/
+char *(*pick_convertor_func(conv_data *c_data))(conv_data *, va_list)
 {
-	char *(*convertor_funcs[256])(conversion_data *, va_list);
-	
+	char *(*convertor_funcs[256])(conv_data *, va_list);
+
 	int i = 0;
 
 	while (i < 256)
 		convertor_funcs[i++] = NULL;
-		
+
 	convertor_funcs['c'] = convert_char;
 	convertor_funcs['s'] = convert_str;
 	convertor_funcs['%'] = percentage;

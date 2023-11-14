@@ -6,15 +6,15 @@
  * @l: args list
  * Return: resulting string
  */
-char *convert_char(conversion_data *c_data, va_list l)
-{	
+char *convert_char(conv_data *c_data, va_list l)
+{
 	char *res = malloc(2);
 	unsigned char c = va_arg(l, int);
 
 	UNUSED(c_data);
 
 	if (res == NULL)
-		return(NULL);
+		return (NULL);
 	res[0] = c;
 	res[1] = '\0';
 	return (res);
@@ -26,7 +26,7 @@ char *convert_char(conversion_data *c_data, va_list l)
  * @l: args list
  * Return: modified string
  */
-char *convert_str(conversion_data *c_data, va_list l)
+char *convert_str(conv_data *c_data, va_list l)
 {
 	char *s = va_arg(l, char *);
 
