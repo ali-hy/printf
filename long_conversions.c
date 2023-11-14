@@ -66,18 +66,18 @@ char *ultos(unsigned long ul, int base, int precision)
  */
 char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
 {
-	char *sign = "", *res;
-
-	if (is_negative)
+    char *sign = "", *res;
+	
+    if (is_negative)
 		sign = "-";
-	else if (flag_is_active(c_data, F_SIGN))
+    else if (flag_is_active(c_data, F_SIGN))
 		sign = "+";
-	else if (flag_is_active(c_data, F_SPACE))
+    else if (flag_is_active(c_data, F_SPACE))
 		sign = " ";
 
-	res = concat(sign, converted_num);
-	free(converted_num);
-	return (res);
+    res = concat(sign, converted_num);
+
+    return (res);
 }
 
 /**
@@ -112,8 +112,10 @@ char *convert_bin(conversion_data *c_data, va_list l)
  */
 char *convert_dec(conversion_data *c_data, va_list l)
 {
-	long num = capture_num(c_data, l);
-	char *res = apply_sign(c_data, ltos(num, 10, 0), num < 0);
+    long num = capture_num(c_data, l);
+    char *temp = ltos(num, 10, 0);
+    char *res = apply_sign(c_data, temp, num < 0);
+    free(temp);
 
-	return (res);
+    return (res);
 }

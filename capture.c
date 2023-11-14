@@ -10,6 +10,9 @@ long capture_long(va_list l)
 }
 long capture_num(conversion_data *c_data, va_list l)
 {
+    if (c_data->len_mod == NULL)
+        return (capture_long(l));
+    
     if (*(c_data->len_mod) == 'l')
         return (capture_long(l));
 
