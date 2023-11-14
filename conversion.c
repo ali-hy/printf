@@ -60,15 +60,15 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 		res[2] = '\0';
 		return (res);
 	}
-
+	temp = convertor_func(c_data, l);
 	if (c_data->code != '%')
 	{
-		temp = convertor_func(c_data, l);
 		res = apply_width(c_data, temp);
 		free(temp);
 	}
 	else
 		res = temp;
+
 	return (res);
 }
 
