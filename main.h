@@ -29,7 +29,7 @@ struct conversion_data
 typedef struct conversion_data conversion_data;
 
 /*TODO: implement funciton*/
-conversion_data *get_conversion_data(const char *c);
+conversion_data get_conversion_data(const char *c);
 
 /* STRING UTILS */
 int len(const char *s);
@@ -45,7 +45,7 @@ int is_digit(char c);
 int is_flag(char c);
 int is_len_mod(char c);
 int is_nonprintable(char c);
-int stoi(const char *s);
+int stoi(char **s);
 
 /* FLAGS */
 enum flags

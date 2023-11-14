@@ -50,3 +50,8 @@ int is_flag(char c)
 			return (0);
 	}
 }
+
+int is_len_mod(char c)
+{
+	return (c == 'h' || c == 'l');
+}

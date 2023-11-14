@@ -97,3 +97,16 @@ char *to_upper(char *s)
 
 	return (s);
 }
+
+int stoi(char **s)
+{
+	int res = 0;
+	
+	while (is_digit(**s))
+	{
+		res *= 10;
+		res += **s - '0';
+		(*s)++;
+	}
+	return (res);
+}
