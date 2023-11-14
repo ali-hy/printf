@@ -13,6 +13,8 @@ char *convert_char(conversion_data *c_data, va_list l)
 
 	UNUSED(c_data);
 
+	if (res == NULL)
+		return(NULL);
 	res[0] = c;
 	res[1] = '\0';
 	return (res);
