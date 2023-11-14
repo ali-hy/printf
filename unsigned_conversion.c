@@ -8,7 +8,7 @@
  */
 char *convert_uns(conversion_data *c_data, va_list l)
 {
-	unsigned long num = va_arg(l, unsigned int);
+	unsigned long num = capture_num(c_data, l);
 
 	if (c_data == NULL)
 		return (NULL);
@@ -25,7 +25,7 @@ char *convert_uns(conversion_data *c_data, va_list l)
 char *convert_oct(conversion_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = va_arg(l, unsigned int);
+	unsigned long num = capture_num(c_data, l);
 
 	if (c_data == NULL)
 		return (NULL);
@@ -50,7 +50,7 @@ char *convert_oct(conversion_data *c_data, va_list l)
 char *convert_hex(conversion_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = va_arg(l, unsigned int);
+	unsigned long num = capture_num(c_data, l);
 
 	if (c_data == NULL)
 		return (NULL);
@@ -76,7 +76,7 @@ char *convert_hex(conversion_data *c_data, va_list l)
 char *convert_HEX(conversion_data *c_data, va_list l)
 {
 	char *temp, *res;
-	unsigned long num = va_arg(l, unsigned int);
+	unsigned long num = capture_num(c_data, l);
 
 	if (c_data == NULL)
 		return (NULL);

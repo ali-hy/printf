@@ -73,7 +73,10 @@ void apply_concat_flags(conversion_data *c_data, const char *current);
 char *apply_width(conversion_data *c_data, const char *s);
 
 /* LENGTH MODIFIERS */
-int get_conversion_base(char *len_mod);
+int capture_int(va_list l);
+unsigned int capture_uint(va_list l);
+long capture_long(va_list l);
+long capture_num(conversion_data *c_data, va_list l);
 
 /* CONVERT */
 conversion_data *new_conversion();

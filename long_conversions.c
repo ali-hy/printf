@@ -74,7 +74,7 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
 		sign = "+";
 	else if (flag_is_active(c_data, F_SPACE))
 		sign = " ";
-		
+
 	res = concat(sign, converted_num);
 	free(converted_num);
 	return (res);
@@ -88,7 +88,7 @@ char *apply_sign(conversion_data *c_data, char *converted_num, int is_negative)
  */
 char *convert_bin(conversion_data *c_data, va_list l)
 {
-	unsigned int num = va_arg(l, unsigned int);
+	unsigned int num = capture_num(c_data, l);
 	char *res;
 
 	if (c_data == NULL)
@@ -112,7 +112,7 @@ char *convert_bin(conversion_data *c_data, va_list l)
  */
 char *convert_dec(conversion_data *c_data, va_list l)
 {
-	long num = va_arg(l, int);
+	long num = capture_num(c_data, l);
 	char *res = apply_sign(c_data, ltos(num, 10, 0), num < 0);
 
 	return (res);
