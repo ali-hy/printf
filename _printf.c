@@ -52,6 +52,7 @@ int _printf(const char *format, ...)
 		{
 			res += buffer_push_char(format[0]);
 		}
+		format++;
 	}
 	va_end(l);
 
