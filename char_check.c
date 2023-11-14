@@ -71,8 +71,11 @@ int is_number_code(char c)
 	int i = 0;
 
 	while (num_codes[i] != '\0')
+	{
 		if (num_codes[i] == c)
 			return (1);
+		i++;
+	}
 
 	return (0);
 }
