@@ -24,12 +24,21 @@ char *convert_uns(conversion_data *c_data, va_list l)
  */
 char *convert_oct(conversion_data *c_data, va_list l)
 {
+	char *temp, *res;
 	unsigned long num = va_arg(l, unsigned int);
 
 	if (c_data == NULL)
 		return (NULL);
 
-	return (ultos(num, 8, 0));
+	temp = ultos(num, 8, 0);
+	res = temp;
+	if (flag_is_active(c_data, F_ALT))
+		if (temp[0] != '0')
+		{
+			res = concat("0", temp);
+			free(temp);
+		}
+	return (res);
 }
 
 /**
@@ -40,12 +49,21 @@ char *convert_oct(conversion_data *c_data, va_list l)
  */
 char *convert_hex(conversion_data *c_data, va_list l)
 {
+	char *temp, *res;
 	unsigned long num = va_arg(l, unsigned int);
 
 	if (c_data == NULL)
 		return (NULL);
 
-	return (ultos(num, 16, 0));
+	temp = ultos(num, 16, 0);
+	res = temp;
+	if (flag_is_active(c_data, F_ALT))
+		if (num != 0)
+		{
+			res = concat("0x", temp);
+			free (temp);
+		}
+	return (res);
 }
 
 /**
@@ -57,10 +75,18 @@ char *convert_hex(conversion_data *c_data, va_list l)
  */
 char *convert_HEX(conversion_data *c_data, va_list l)
 {
+	char *temp, *res;
 	unsigned long num = va_arg(l, unsigned int);
 
 	if (c_data == NULL)
 		return (NULL);
-
-	return (to_upper(ultos(num, 16, 0)));
+	temp = to_upper(ultos(num, 16, 0));
+	res = temp;
+	if (flag_is_active(c_data, F_ALT))
+		if (num != 0)
+		{
+			res = concat("0X", temp);
+			free (temp);
+		}
+	return (res);
 }

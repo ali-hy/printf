@@ -23,3 +23,10 @@ void activate_flag(conversion_data *c_data, flag_t flag)
 {
 	c_data->flag_comb = c_data->flag_comb | flag;
 }
+
+/*char *apply_concat_flags(conversion_data *c_data, const char *current)
+{
+	char *res;
+
+
+}*/
