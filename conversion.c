@@ -63,7 +63,7 @@ char *translate_conversion(conversion_data *c_data, va_list l)
 
 	if (c_data->code != 'c')
 	{
-		temp = converter_func(c_data, l);
+		temp = convertor_func(c_data, l);
 		res = apply_width(c_data, temp);
 		if (c_data->code != 's')
 			free(temp);
