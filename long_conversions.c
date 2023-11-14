@@ -88,7 +88,7 @@ char *apply_sign(conv_data *c_data, char *converted_num, int is_negative)
  */
 char *convert_bin(conv_data *c_data, va_list l)
 {
-	unsigned long num = capture_num(c_data, l);
+	unsigned int num = capture_num(c_data, l);
 	char *res;
 
 	if (c_data == NULL)
